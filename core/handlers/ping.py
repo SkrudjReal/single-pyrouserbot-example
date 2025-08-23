@@ -11,7 +11,8 @@ import time
 async def ping(app: Client, msg: Message, me: User, pool: Pool, repo: RequestsRepo, redis: Redis):
 
     time_start = time.time()
-    mesg = await msg.reply(tricks['ping']['ping'])
+    mesg = await msg.reply(tricks['ping']['ping'], quote=False)
     time_end = time.time()
     await mesg.edit_text(tricks['ping']['ping_speed'].format(f'{time_end-time_start:.3f}'))
+    await msg.delete()
 
